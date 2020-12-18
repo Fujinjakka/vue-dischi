@@ -11,22 +11,33 @@
     <div id="vue_container">
 
       <div id="container">
-        <div id="column">lista di dischi</div>
+        <div id="column">
+          <!-- <ol>
+            <li v-for="cd in cds" :style="{backgroundImage:'url('+ cd.poster +')'}">></li>
+          </ol> -->
+          <h2>I MIEI ALBUMS</h2>
+          <ul>
+            <li v-for="cd in cds">{{cd.title}}</li>
+          </ul>
+        </div>
         <div id="main">
           <div id="nav">
-            <h1>La mia musica</h1>
-            <label for="">seleziona qualcosa</label>
-            <select name="nome">
-              <option>dentro option</option>
+            <h1>LA MIA MUSICA</h1>
+            <label for="gen">Cambia genere</label>
+            <select name="gen" v-model="selectOption">
+              <option>Tutti</option>
+              <option v-for="genre in genres" :value="genre">{{genre}}</option>
             </select>
           </div>
           <div id="cover_container">
-            <div class="cover">
-              <div class="image"><img src="" alt=""></div>
-              <div class="text">titolo</div>
-              <div class="text">autore</div>
-              <div class="text">genere</div>
-              <div class="text">anno</div>
+            <div v-for="cd in cds" class="cover">
+              <div class="image">
+                <img :src="cd.poster" alt="">
+              </div>
+              <div class="text">Nome Album: {{cd.title}}</div>
+              <div class="text">Artista: {{cd.author}}</div>
+              <div class="text">Genere: {{cd.genre}}</div>
+              <div class="text">Anno: {{cd.year}}</div>
             </div>
           </div>
         </div>

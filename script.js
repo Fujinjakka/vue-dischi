@@ -10,10 +10,12 @@ var app = new Vue (
   {
     el:"#vue_container",
     data: {
-      x:"",
       cds:[],
+      genres:[],
+      selectOption:"",
     },
     methods:{
+
 
     },
     mounted: function() {
@@ -23,6 +25,14 @@ var app = new Vue (
         .then(function (response) {
           self.cds = response.data.response;
           console.log(self.cds);
+
+            self.cds.forEach((element) => {
+              if (!self.genres.includes(element.genre)) {
+                self.genres.push(element.genre);
+              }
+              console.log(self.genres);
+            });
+
           });
       }
     }
